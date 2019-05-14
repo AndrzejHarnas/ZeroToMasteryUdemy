@@ -1,11 +1,15 @@
 /*comment */
+*{
+  text-align: right;
+}
 body {
 background-image: url(tapetka.jpg);
 background-size: cover;
 
 }
 
-h2 {
+h2 + p
+ {
   color: #FFFFFA;
   text-align: center;
   border: 5px solid rgba(116, 116, 1, 0.2);
@@ -13,10 +17,25 @@ h2 {
 }
 
 p {
-  color:pink;
+  color:rgba(0,0,255, 0.5);
+  line-height: 20px;
+  font-style: italic;
+  font-size:150%;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 li {
   list-style: none;
   display: inline-block;
+}
+.webtext:hover {
+  border: 5px dotted blue;
+}
+
+#div1 {
+  background-color: rgba(255,0,0,0.3);
+}
+
+#div2 {
+  background-color: rgba(0,0,255,0.3);
 }
