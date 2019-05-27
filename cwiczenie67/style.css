@@ -1,0 +1,30 @@
+
+body {
+font-family: 'Dancing Script', cursive;
+justify-content: center;
+align-items: center;
+}
+
+
+Header {
+  font-size:50px;
+  color: red;
+}
+
+.cointainer {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+
+
+}
+
+.btn {
+  width:200px;
+  font-size: 30px;
+}
