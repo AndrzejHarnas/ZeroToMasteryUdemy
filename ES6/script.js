@@ -74,3 +74,48 @@ console.log(filterArray);
 
 const reduceArray = array.reduce((acc,num) => {return acc+num},2);
 console.log(reduceArray);
+
+
+const test1 = (a,b) => a*b;
+
+console.log(test1(2,3));
+
+//reference type
+
+var object1 = {value:10};
+var object2 = object1;
+var object3 = {value:10};
+
+//context
+const object4 = {a:function(){console.log(this)}};
+console.log(object4);
+
+//instantiation
+
+class Player {
+  constructor(name, type){
+    this.name=name;
+    this.type=type;
+  }
+  introduce() {
+    console.log(`Cześć mam na imie ${this.name} i jestem ${this.type}`);
+  }
+}
+
+class Wizard extends Player {
+  constructor(name,type) {
+    super(name,type);
+  }
+
+  play(){
+    console.log(`hi your are Wizard but you play like ${this.type}`);
+  }
+}
+
+
+let player1 = new Player("Andrzej","Warrior");
+player1.introduce();
+
+let player2 = new Wizard("Marian","Hunter");
+player2.introduce();
+player2.play();
