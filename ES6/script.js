@@ -119,3 +119,35 @@ player1.introduce();
 let player2 = new Wizard("Marian","Hunter");
 player2.introduce();
 player2.play();
+
+// refrences
+
+let user1 = {name:"Andrzej", password:"123"};
+let user2 = user1;
+
+user2.password = "555";
+
+
+console.log(user1);
+console.log(user2);
+
+var arr1 = [1,2,3,4];
+var arr2 = arr1;
+
+arr2.push(1232323);
+
+
+console.log(arr1);
+console.log(arr2);
+
+
+//objects diferent location in memory
+
+let obj4 = {a: 'a', b:'b', c='c'};
+let obj5 = Object.assign({},obj4);
+let obj6 = {...obj4};
+
+
+obj4.c="5";
+
+console.log(obj5);
