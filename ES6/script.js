@@ -151,3 +151,11 @@ let obj6 = {...obj4};
 obj4.c="5";
 
 console.log(obj5);
+
+//type coercion - == prównanie z automatyczną konwersją do tego samego typu
+1 == '1';
+1 === '1';
+
+
+
+object.is(-0,+0)
