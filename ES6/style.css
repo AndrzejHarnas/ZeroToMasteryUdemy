@@ -5,29 +5,62 @@ body{
 .container {
   display:flex;
   margin:auto;
-  width:30rem;
-  height:30rem;
+  width:70rem;
+  height:45rem;
   background-color: #f2f4cb;
   align-items: center;
   justify-content: center;
   flex-wrap:wrap;
 }
+#start{
+  margin-left:1rem;
+  margin-right: 1rem;
+  margin-top: 1.1rem;
+}
 #playContainer {
   display:flex;
-  width:28rem;
-  height:25rem;
-  background-color: #110b11;
+  width:68rem;
+  height:40rem;
+  background-color: white;
   justify-content: center;
   align-items: center;
+  border: 10px solid #f2f4cb;
 
 }
 #ball {
-  position: fixed;
+  position: relative;
   border-radius: 15px;
   width:2rem;
   height:2rem;
-  left:27rem;
-  right:15rem;
-  top:15rem;
-  bottom:15rem;
+  left:-30.5rem;
+  top:0rem;
+}
+.man{
+  width:2rem;
+  height: 5rem;
+}
+
+.man1{
+  position: relative;
+  left:-30rem;
+  top:0rem;
+}
+
+.man2{
+  position: relative;
+  left:30rem;
+  top:0rem;
+}
+.player{
+  margin-top:1.1rem;
+}
+.results {
+  text-align:center;
+  font-size:2rem;
+  color: red;
+  width:5rem;
+  height:2rem;
+  margin-left:1rem;
+  margin-right:1rem;
+  margin-top:0.9rem;
 }

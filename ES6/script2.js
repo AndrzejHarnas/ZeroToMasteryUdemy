@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll('button');
 const inputPlyers = document.querySelectorAll('input');
-const ballImg = document.getElementById("ball");
+const ballImg = document.getElementById('ball');
+const mans = document.getElementsByClassName('man')
 
 
 class player {
@@ -16,48 +17,83 @@ class player {
   }
 }
 
-class ball {
-  constructor(left=0,right=0,top=0,bottom=0){
+class movingObjects {
+  constructor(left=0,top=0,step1=0.1,step2=0.5){
     this.left = left;
-    this.right = right;
     this.top = top;
-    this.bottom = bottom;
+    this.step1 = step1;
+    this.step2 = step2;
+
   }
-addLeft(){
-  this.left += .1;
+addRight(){
+  if(this.left <=30){
+  this.left = this.left + this.step2;
+  }
 }
 
-addRight(){
-  this.right += .1;
+addLeft(){
+  if(this.left >=-30){
+  this.left = this.left - this.step2;
+  }
 }
 
 addTop(){
-  this.top += .1;
+  if(this.top<=17) {
+  this.top =this.top + this.step1;
+    console.log(this.top);
+  }
 }
 
 addBottom(){
-  this.bottom += .1;
+  if(this.top>=-17){
+  this.top = this.top - this.step1;
+  console.log(this.top);
+  }
 }
 
 }
 
 const player1 = new player("Stefan");
 const player2 = new player("Andrzej","Krzyżyk");
-const ballObject = new ball(27,15,15,15);
-player1.addPoint();
+const ballObject = new movingObjects(-30.5,0,0.1,0.5);
+const man1Object = new movingObjects(-30,0,0.1,0.5);
+const man2Object = new movingObjects(30,0,0.1,0.5);
 
-for(i=1;i<=10;i++){
- player2.addPoint();
-}
 
 const ballMove = (e) => {
 
 var keyCode = e.which;
-if(keyCode == 119){
+  if(keyCode == 119){
 
-ballObject.addBottom();
-ballImg.style.bottom = ""+ballObject.bottom+"rem";
-}
+    ballObject.addBottom();
+    man1Object.addBottom();
+    ballImg.style.top = ""+ballObject.top+"rem";
+    mans[0].style.top = ""+man1Object.top+"rem";
+
+    console.log(ballObject.top);
+  }
+
+  if(keyCode == 115){
+
+    ballObject.addTop();
+    man1Object.addTop();
+    ballImg.style.top = ""+ballObject.top+"rem";
+    mans[0].style.top = ""+man1Object.top+"rem";
+    console.log(ballObject.top);
+
+  }
+
+  if(keyCode == 100) {
+    for(i=1;i<=60;i++){
+      ballObject.addRight();
+      ballImg.style.left = ""+ballObject.left+"rem";
+    }
+  }
+
+  if(keyCode == 126) {
+    man2Object.addBottom();
+    mans[1].style.top = ""+man2Object.top+"rem";
+  }
 
 }
 
@@ -68,8 +104,8 @@ buttons[0].disabled="true";
 player1.name = prompt("Wpisz imię pierwszego gracza:");
 player2.name = prompt("Wpisz imię drugiego gracza:");
 
-inputPlyers[0].value=player1.name;
-inputPlyers[1].value=player2.name;
+inputPlyers[1].value=player1.name;
+inputPlyers[2].value=player2.name;
 
 window.addEventListener('keypress',ballMove);
 };
