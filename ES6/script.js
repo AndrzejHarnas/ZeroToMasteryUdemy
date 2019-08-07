@@ -159,3 +159,34 @@ console.log(obj5);
 
 
 object.is(-0,+0)
+
+
+//ES7
+
+const text = "Whats up";
+text.includes("u");
+
+const arrayPets = {'dog','cat','snake'};
+arrayPets.includes('snake');
+
+
+const square = (x) => x**2;
+
+
+
+//ES8
+
+text.padStart(10);
+text.padEnd(10);
+
+
+const funPlusComma = (a,b,c,) => {return a*b*c};
+
+
+const objValue = {
+  username1: "Andrzej1",
+  username2: "Andrzej2",
+  username3: "Andrzej3"
+}
+
+Object.value(objValue).forEach(value => console.log(value));
