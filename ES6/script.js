@@ -189,4 +189,33 @@ const objValue = {
   username3: "Andrzej3"
 }
 
-Object.value(objValue).forEach(value => console.log(value));
+Object.values(objValue).forEach(value => console.log(value));
+Object.entries(objValue).forEach(value => console.log(value));
+
+const basket = ["apples", "oranges", "tomatoes"];
+const detailedBasket = {
+  apples: 2,
+  oranges:5,
+  tomatoes: 1
+}
+
+// for of
+
+for (item of basket) {
+  console.log(item);
+}
+
+// for in
+
+for (items in detailedBasket) {
+  console.log(item);
+}
+
+
+// call stack - stack overflow
+
+function foo(){
+  foo();
+}
+
+foo();
