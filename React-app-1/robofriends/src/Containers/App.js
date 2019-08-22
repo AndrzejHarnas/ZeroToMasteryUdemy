@@ -3,6 +3,7 @@ import CardList from '../Components/CardList';
 import SearchBox from '../Components/searchBox';
 import './App.css';
 import Scroll from '../Components/Scroll';
+import ErrorBoundry from '../Components/ErrorBoundry';
 
 
 
@@ -39,9 +40,11 @@ this.setState({searchfield: event.target.value})
     <div className='tc'>
       <h1 className='f1'>Robo friends</h1>
       <SearchBox searchChange={this.onSearchchange} />
-      <Scroll>
-      <CardList robots={filteredRobots}/>
-      </Scroll>
+        <Scroll>
+          <ErrorBoundry>
+            <CardList robots={filteredRobots}/>
+          </ErrorBoundry>
+        </Scroll>
     </div>
     );
     }
