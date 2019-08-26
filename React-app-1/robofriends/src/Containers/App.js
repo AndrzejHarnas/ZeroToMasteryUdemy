@@ -38,8 +38,7 @@ componentDidMount(){
     const {robots} = this.state;
     const {searchField, onSearchchange} = this.props;
     const filteredRobots = robots.filter(robot => {
-      console.log(searchField);
-      return robot.name.toLowerCase().includes(this.searchField.toLowerCase());
+      return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
     if(robots.lenght === 0) {

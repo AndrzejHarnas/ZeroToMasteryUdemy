@@ -9,7 +9,7 @@ import 'tachyons';
 import {searchRobots} from './reducers';
 
 
-const store = createStore(searchRobots)
+const store = createStore(searchRobots);
 
 ReactDOM.render(
 <Provider store={store}>
