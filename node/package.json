@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "eslint-utils": "^1.4.2"
   }
 }
