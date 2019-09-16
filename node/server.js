@@ -1,20 +1,30 @@
-const http = require('http');
+const express = require('express');
 
-
-const server = http.createServer((request, response) => {
-//console.log('headers:', request.headers);
-console.log('method:', request.method);
-console.log('url:', request.url);
-
+const app = express();
 const user = {
-  name: 'Andrzej',
-  hobby: 'Guitar'
+  name: 'Natalia',
+  hobby: 'Plażing'
 }
 
-//response.setHeader('Content-Type', 'text/html');
-response.setHeader('Content-Type', 'application/json');
-//response.end('<h1>Hello</h1>');
-response.end(JSON.stringify(user));
-})
 
-server.listen(3000);
+app.get('/', (req, res) => {
+//  res.send('<h1>hello<h1>');
+//res.send(user);
+res.send('getting root');
+});
+
+app.get('/profile', (req, res) => {
+//  res.send('<h1>hello<h1>');
+//res.send(user);
+res.send('getting profile');
+});
+
+app.post('/profile', (req, res) => {
+res.send(user);
+});
+
+
+
+
+
+app.listen(3000);

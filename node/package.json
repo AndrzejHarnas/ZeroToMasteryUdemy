@@ -13,6 +13,7 @@
     "nodemon": "^1.19.2"
   },
   "dependencies": {
-    "eslint-utils": "^1.4.2"
+    "eslint-utils": "^1.4.2",
+    "express": "^4.17.1"
   }
 }
