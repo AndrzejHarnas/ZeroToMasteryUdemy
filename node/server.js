@@ -1,22 +1,23 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser')
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-res.send('getting root');
-});
+const app = express();
+app.use(express.static(__dirname + '/public'));
 
-app.get('/profile', (req, res) => {
-res.send('getting profile');
-});
 
-app.post('/profile', (req, res) => {
-  console.log(req.header);
-res.send('Success');
-});
+//app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.json());
+
+//app.get('/:id', (req, res) => {
+//console.log(req.query);
+//  req.body
+//console.log(req.header);
+//  console.log(req.params);
+
+//res.status(404).send('Not Found');
+//});
+
 
 
 app.listen(3000);
