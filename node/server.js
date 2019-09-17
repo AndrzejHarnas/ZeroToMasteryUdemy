@@ -1,12 +1,21 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser')
 
-app.use((req, res, next) => {
-  console.log('<h1> hello </h1>');
-  next();
-});
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
-res.send('test');
+res.send('getting root');
+});
+
+app.get('/profile', (req, res) => {
+res.send('getting profile');
+});
+
+app.post('/profile', (req, res) => {
+  console.log(req.header);
+res.send('Success');
 });
 
 
