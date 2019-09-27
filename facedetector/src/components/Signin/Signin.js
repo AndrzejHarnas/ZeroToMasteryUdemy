@@ -1,8 +1,32 @@
 import React from 'react';
 
 
-const Signin = ({onRouteChange}) =>
-{
+class Signin extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      signInEmial: '',
+      signInPassword: ''
+    }
+  }
+
+
+  onEmailChange = (event) => {
+    this.setState({signInEmial: event.target.value})
+  }
+
+  onPasswordChange = (event) => {
+    this.setState({signInPassword: event.target.value})
+  }
+
+onSubmitSignIn = () => {
+  console.log(this.state);
+  this.props.onRouteChange('home');
+}
+
+render(){
+  const {onRouteChange} = this.props;
   return (
         <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">
           <main className="pa4 black-80">
@@ -20,7 +44,7 @@ const Signin = ({onRouteChange}) =>
             </fieldset>
               <div className="">
                 <input
-                  onClick={() => onRouteChange('home')}
+                  onClick={this.onSubmitSignIn}
                   className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                   type="submit"
                   value="Sign in"
@@ -34,5 +58,10 @@ const Signin = ({onRouteChange}) =>
         </article>
  );
 }
+
+}
+
+
+
 
 export default Signin;
