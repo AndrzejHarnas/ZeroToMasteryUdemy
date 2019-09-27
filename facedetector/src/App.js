@@ -45,6 +45,13 @@ class App extends Component {
     }
   }
 
+componentDidMount() {
+  fetch('http://localhost:3000/')
+  .then(response => response.json())
+  .then(console.log)
+}
+
+
 onInputChange=(event) => {
   this.setState({input: event.target.value});
 }
@@ -62,6 +69,9 @@ claculateFaceLocation = (data) => {
     bottomRow: height - (clarifaiface.bottom_row * height)
   }
 }
+
+
+
 
 displayFaceBox = (box) => {
   console.log(box);
@@ -106,7 +116,7 @@ render() {
             <Rank />
             <ImageLinkForm
             onInputChange={this.onInputChange}
-            onButtonSubmit={this.onButtonSubmit}/>
+            onButtonSubmit={this.onButtonSubmit}/>np
             <FaceRecognition
             box={box}
             imageUrl={imageUrl}/>
