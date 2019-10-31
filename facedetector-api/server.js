@@ -2,9 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
-
 const saltRounds = 10;
 const app = express();
+const knex = require('knex');
+
+const db = knex ({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'postgres',
+    password : '',
+    database : "'smart-brain'"
+  }
+});
+
+db.select('*').from('users').then(data => {
+  console.log(data);
+});
+
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -46,7 +62,7 @@ app.get('/', (req, res) => {
 app.post('/signin', (req, res) => {
   if(req.body.email === database.users[0].email &&
      req.body.password === database.users[0].password) {
-    res.json('success');
+    res.json(database.user[0]);
   } else {
     res.status(400).json('error logging in');
   }
@@ -60,16 +76,12 @@ app.post('/register', (req, res) => {
     });
 });
 
-  database.users.push({
-    id: '125',
-    name: name,
-    email: email,
-    password: password,
-    entries: 0,
-    joined: new Date()
-  })
-res.json(database.users[database.users.length-1])
-
+db('users').insert({
+  email: email,
+  name: name,
+  joined: new Date()
+}).then(console.log)
+res.json(database.users[database.users.length-1]);
 })
 
 
