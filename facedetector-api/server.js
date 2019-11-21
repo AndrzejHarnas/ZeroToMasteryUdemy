@@ -12,11 +12,7 @@ const db = knex ({
     host : '127.0.0.1',
     user : 'postgres',
     password : 'Harnas_20',
-<<<<<<< HEAD
     database : "'smart-brain'"
-=======
-    database : "smart-brain"
->>>>>>> 749c2403254f62ea89db560c6519145276dd6269
   }
 });
 
@@ -96,14 +92,17 @@ db('users').insert({
 app.get('/profile/:id', (req, res) => {
   const { id } = req.params;
   let found = false;
- db.select('*').from('users').where({
-   id: id
- }).then(user =>{
-   console.log(user[0]);
- });
-  if(!found) {
-    res.status(400).json('not found');
-  }
+ db.select('*').from('users').where({id}).then(user => {
+   if (user.length) {
+        res.json(user[0]);
+   } else {
+     res.status(400).json('not found')
+   }
+ })
+ .catch(err => res.status(400).json('error gettinf user'))
+//  if(!found) {
+//    res.status(400).json('not found');
+//  }
 })
 
 
