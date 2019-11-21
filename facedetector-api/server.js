@@ -12,7 +12,11 @@ const db = knex ({
     host : '127.0.0.1',
     user : 'postgres',
     password : 'Harnas_20',
+<<<<<<< HEAD
     database : "'smart-brain'"
+=======
+    database : "smart-brain"
+>>>>>>> 749c2403254f62ea89db560c6519145276dd6269
   }
 });
 
@@ -80,8 +84,12 @@ db('users').insert({
   email: email,
   name: name,
   joined: new Date()
-}).then(console.log)
-res.json(database.users[database.users.length-1]);
+})
+  .returning('*')
+  .then(user => {
+    res.json(user[0]);
+  })
+  .catch(err => res.status(400).json('nie można się zarejestrować'))
 })
 
 
