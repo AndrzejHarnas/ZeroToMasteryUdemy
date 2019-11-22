@@ -53,40 +53,58 @@ const database = {
   ]
 }
 
-
 app.get('/', (req, res) => {
   res.send(database.users);
 })
 
-
 app.post('/signin', (req, res) => {
-  if(req.body.email === database.users[0].email &&
-     req.body.password === database.users[0].password) {
-    res.json(database.user[0]);
+db.select('email','hash').from('login')
+.where('email','=', req.body.email)
+.then(data => {
+  const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+  if(isValid) {
+    return db.select('*').from('users')
+    .where('email','=', req.body.email)
+    .then(user => {
+      res.json(user[0])
+    })
+    .catch(err => res.status(400).json('nie można pobrać użytkownika'))
   } else {
-    res.status(400).json('error logging in');
+    res.status(400).json('nie prawidłowe dane logowania')
   }
+})
+    .catch(err => res.status(400).json('nie prawidłowe dane logowania'))
 })
 
 app.post('/register', (req, res) => {
   const {email, name, password} = req.body;
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(password, salt, function(err, hash) {
-        console.log(hash)
-    });
-});
+  const hash =  bcrypt.hashSync(password, saltRounds);
 
-db('users').insert({
-  email: email,
-  name: name,
-  joined: new Date()
-})
-  .returning('*')
-  .then(user => {
-    res.json(user[0]);
+db.transaction(trx => {
+  trx.insert({
+    hash: hash,
+    email: email
+  })
+  .into('login')
+  .returning('email')
+  .then(loginEmail => {
+    return trx('users')
+      .returning('*')
+      .insert({
+        email: loginEmail[0],
+        name: name,
+        joined: new Date()
+      })
+      .then(user => {
+        res.json(user[0]);
+      })
+    })
+   .then(trx.commit)
+   .catch(trx.rollback)
   })
   .catch(err => res.status(400).json('nie można się zarejestrować'))
-})
+});
+
 
 
 app.get('/profile/:id', (req, res) => {
